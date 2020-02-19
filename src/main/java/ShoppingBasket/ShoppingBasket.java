@@ -1,5 +1,6 @@
 package ShoppingBasket;
 
+import Discount.IDiscountable;
 import Item.Item;
 
 import java.util.ArrayList;
@@ -21,12 +22,17 @@ public class ShoppingBasket {
         this.items.add(item);
     }
 
-    public double getBasketTotal() {
+    public double getSubTotalBasket() {
         double total = 0;
         for (Item item : this.items){
             total += item.getValue();
         }
         return total;
+    }
+
+    public double getDiscountedTotal(IDiscountable discount){
+        return discount.applyDiscount(getSubTotalBasket());
+
     }
 
     public int getNumberOfItems(){
