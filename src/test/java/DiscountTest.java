@@ -1,4 +1,6 @@
+import Discount.Bogof;
 import Discount.IDiscountable;
+import Discount.LoyaltyDiscount;
 import Discount.TenPercent;
 import Item.Item;
 import ShoppingBasket.ShoppingBasket;
@@ -14,6 +16,8 @@ public class DiscountTest {
     private Item itemMicrowave;
     private ShoppingBasket shoppingBasket;
     private IDiscountable tenPercent;
+    private LoyaltyDiscount loyalty;
+    private Bogof bogof;
 
     @Before
     public void before(){
@@ -22,6 +26,8 @@ public class DiscountTest {
         itemMicrowave = new Item("microwave", 40.00);
         shoppingBasket = new ShoppingBasket();
         tenPercent = new TenPercent();
+        loyalty = new LoyaltyDiscount();
+        bogof = new Bogof();
     }
 
     @Test
@@ -44,6 +50,23 @@ public class DiscountTest {
         shoppingBasket.addItemToBasket(itemBread);
         shoppingBasket.addItemToBasket(itemMicrowave);
         assertEquals(38.22, tenPercent.applyDiscount(shoppingBasket, false), 0.01);
+    }
+
+    @Test
+    public void doesApplyLoyalty(){
+        shoppingBasket.addItemToBasket(itemSoap);
+        shoppingBasket.addItemToBasket(itemBread);
+        shoppingBasket.addItemToBasket(itemMicrowave);
+        assertEquals(41.62, loyalty.applyDiscount(shoppingBasket, true), 0.01);
+    }
+
+    @Test
+    public void appliesBogof(){
+        shoppingBasket.addItemToBasket(itemSoap);
+        shoppingBasket.addItemToBasket(itemBread);
+        shoppingBasket.addItemToBasket(itemBread);
+//        bogof.applyDiscount(shoppingBasket, false);
+        assertEquals(2.47, bogof.applyDiscount(shoppingBasket, false), 0.01);
     }
 
 }
