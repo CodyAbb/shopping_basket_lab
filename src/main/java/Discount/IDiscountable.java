@@ -1,5 +1,10 @@
 package Discount;
 
+import Item.Item;
+import ShoppingBasket.ShoppingBasket;
+
+import java.util.ArrayList;
+
 public interface IDiscountable {
-    public double applyDiscount(double value);
+    public double applyDiscount(ShoppingBasket shoppingBasket, boolean loyaltyCard);
 }

@@ -30,10 +30,6 @@ public class ShoppingBasket {
         return total;
     }
 
-    public double getDiscountedTotal(IDiscountable discount){
-        return discount.applyDiscount(getSubTotalBasket());
-
-    }
 
     public int getNumberOfItems(){
         return this.items.size();

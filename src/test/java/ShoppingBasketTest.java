@@ -34,17 +34,4 @@ public class ShoppingBasketTest {
         assertEquals(2, shoppingBasket.getNumberOfItems());
     }
 
-    @Test
-    public void canGetShoppingBasketAmountWithoutDiscount(){
-        shoppingBasket.addItemToBasket(itemSoap);
-        shoppingBasket.addItemToBasket(itemBread);
-        assertEquals(2.47, shoppingBasket.getSubTotalBasket(), 0.01);
-    }
-
-    @Test
-    public void applyTenPercentDiscount(){
-        shoppingBasket.addItemToBasket(itemSoap);
-        shoppingBasket.addItemToBasket(itemBread);
-        assertEquals(2.22, shoppingBasket.getDiscountedTotal(tenPercent), 0.01);
-    }
 }
